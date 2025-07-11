@@ -28,6 +28,8 @@ model User {
   resetTokenExpiration DateTime?
   role                 Role                    @default(user)
   points               Int                     @default(0)
+  isVerified           Boolean                 @default(false)
+  registerToken        String?                 @db.VarChar(255)
 
   contributions        Contribution[]
   likesOnContributions LikeContribution[]

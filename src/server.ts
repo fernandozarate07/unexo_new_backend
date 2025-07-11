@@ -1,7 +1,8 @@
-import dotenv from "dotenv";
-import app from "./app";
+// server.ts
 
-// Determinar el archivo .env a cargar según el entorno
+//Configuramos variables de entorno
+import dotenv from "dotenv";
+
 const envFile =
   process.env.NODE_ENV === "production"
     ? ".env.production"
@@ -11,9 +12,12 @@ const envFile =
 
 dotenv.config({ path: envFile });
 
-//define el puerto del servidor
+// Importamos la aplicación Express
+import app from "./app";
+
 const PORT = process.env.PORT || 5001;
 
+// Iniciamos el servidor
 app.listen(PORT, () => {
-  console.log(`Server Unexo is running on port ${PORT}`);
+  console.log(`Server corriendo en puerto ${PORT}`);
 });
