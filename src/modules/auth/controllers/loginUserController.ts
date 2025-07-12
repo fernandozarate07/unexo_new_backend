@@ -18,18 +18,24 @@ export default async function loginUserController(req: Request, res: Response) {
       },
     });
   } catch (error: any) {
-    if (error.message === "INVALID_CREDENTIALS") {
-      return res.status(401).json({
-        success: false,
-        message: "Email o contraseña incorrectos",
-      });
-    }
-
     console.error("Error en login:", error);
 
-    return res.status(500).json({
-      success: false,
-      message: "Error interno del servidor",
-    });
+    switch (error.code) {
+      case "INVALID_CREDENTIALS":
+        return res.status(401).json({
+          success: false,
+          message: "Email o contraseña incorrectos",
+        });
+      case "INTERNAL_SERVER_ERROR":
+        return res.status(500).json({
+          success: false,
+          message: "Error interno del servidor",
+        });
+      default:
+        return res.status(500).json({
+          success: false,
+          message: "Ocurrió un error inesperado",
+        });
+    }
   }
 }
