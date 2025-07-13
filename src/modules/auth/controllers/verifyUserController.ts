@@ -13,14 +13,14 @@ export async function verifyUserController(req: Request, res: Response) {
       user: { id: user.id },
     });
   } catch (error: any) {
-    if (error.message === "INVALID_TOKEN") {
+    if (error.code === "INVALID_TOKEN") {
       return res.status(400).json({
         success: false,
         message: "Token inválido",
       });
     }
 
-    if (error.message === "USER_NOT_FOUND") {
+    if (error.code === "USER_NOT_FOUND") {
       return res.status(404).json({
         success: false,
         message: "Usuario no encontrado",

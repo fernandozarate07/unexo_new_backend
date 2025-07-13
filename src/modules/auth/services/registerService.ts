@@ -15,7 +15,7 @@ export async function registerUserService({ name, email, password }: RegisterUse
   const existingUser = await findUserByEmail(email);
 
   if (existingUser) {
-    throw new Error("EMAIL_ALREADY_USED");
+    throw { code: "EMAIL_ALREADY_USED" };
   }
 
   // Hasheamos la contraseña

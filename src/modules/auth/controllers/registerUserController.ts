@@ -13,7 +13,7 @@ export async function registerUserController(req: Request, res: Response) {
       user: { id: newUser.id },
     });
   } catch (error: any) {
-    if (error.message === "EMAIL_ALREADY_USED") {
+    if (error.code === "EMAIL_ALREADY_USED") {
       return res.status(409).json({
         success: false,
         message: "Este email ya fue ocupado",
