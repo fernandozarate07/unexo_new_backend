@@ -8,6 +8,7 @@ import registerValidator from "../validators/registerValidator";
 import verifyValidator from "../validators/verifyValidator";
 import loginValidator from "../validators/loginValidator";
 import updatePasswordValidator from "../validators/updatePasswordValidator";
+import forgotPasswordValidator from "../validators/forgotPasswordValidator";
 
 // Importamos el middlewares
 import validateRequest from "@/middlewares/validateRequest";
@@ -20,6 +21,7 @@ import { verifyUserController } from "../controllers/verifyUserController";
 import loginUserController from "../controllers/loginUserController";
 import logoutUserController from "../controllers/logoutUserController";
 import updatePasswordController from "../controllers/updatePasswordController";
+import { forgotPasswordController } from "../controllers/forgotPasswordController";
 
 // Rutas
 router.post("/register", registerValidator, validateRequest, registerUserController);
@@ -34,5 +36,6 @@ router.put(
   validateRequest,
   updatePasswordController
 );
+router.post("passwpord/forgot", forgotPasswordValidator, validateRequest, forgotPasswordController);
 
 export default router;

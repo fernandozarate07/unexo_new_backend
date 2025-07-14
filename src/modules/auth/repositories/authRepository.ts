@@ -24,9 +24,9 @@ export async function updateIsVerified(id: number) {
     data: { isVerified: true, registerToken: null },
   });
 }
-export async function getUserRoleById(id: number) {
+export async function getUserRoleById(userId: number) {
   return prisma.user.findUnique({
-    where: { id },
+    where: { id: userId },
     select: { role: true },
   });
 }
@@ -34,5 +34,14 @@ export async function updateUserPassword(userId: number, hashedPassword: string)
   return prisma.user.update({
     where: { id: userId },
     data: { password: hashedPassword },
+  });
+}
+export async function addResetTokenToUser(userId: number, token: string, expires: Date) {
+  return prisma.user.update({
+    where: { id: userId },
+    data: {
+      resetToken: token,
+      resetTokenExpiration: expires,
+    },
   });
 }
