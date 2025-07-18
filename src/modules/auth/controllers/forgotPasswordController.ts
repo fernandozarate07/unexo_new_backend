@@ -6,8 +6,6 @@ interface ForgotPasswordDTO {
   email: string;
 }
 
-//DTO salida
-
 export async function forgotPasswordController(req: Request<{}, {}, ForgotPasswordDTO>, res: Response) {
   const data: ForgotPasswordDTO = req.body;
   const email = data.email;
@@ -15,7 +13,7 @@ export async function forgotPasswordController(req: Request<{}, {}, ForgotPasswo
     await forgotPasswordService(email);
     return res.status(200).json({
       success: true,
-      message: "Email de restablecimiento de contraseña enviado correctamente.",
+      message: "Email de restablecimiento enviado correctamente.",
     });
   } catch (error: any) {
     console.error("Error al intentar restablecer la contraseña", error);

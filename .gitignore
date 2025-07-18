@@ -6,3 +6,8 @@ node_modules
 .env.production
 
 /src/generated/prisma
+
+# Ignorar tests (opcional)
+*.test.ts
+tests/
+__tests__/

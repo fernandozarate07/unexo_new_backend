@@ -1,3 +1,5 @@
+// src/modules/auth/repositories/authRepository.ts
+
 import prisma from "@/config/prisma";
 
 export interface CreateUserData {
@@ -33,7 +35,7 @@ export async function getUserRoleById(userId: number) {
 export async function updateUserPassword(userId: number, hashedPassword: string) {
   return prisma.user.update({
     where: { id: userId },
-    data: { password: hashedPassword },
+    data: { password: hashedPassword, resetToken: null, resetTokenExpiration: null },
   });
 }
 export async function addResetTokenToUser(userId: number, token: string, expires: Date) {
@@ -43,5 +45,10 @@ export async function addResetTokenToUser(userId: number, token: string, expires
       resetToken: token,
       resetTokenExpiration: expires,
     },
+  });
+}
+export async function findUserByResetToken(token: string) {
+  return prisma.user.findFirst({
+    where: { resetToken: token, resetTokenExpiration: { gte: new Date() } }, // revisar esto si esta comprobando que el dato no haya expirado.
   });
 }

@@ -1,3 +1,5 @@
+// src/modules/auth/services/authMailService.ts
+
 import { sendMail } from "@/services/mailService";
 
 export async function sendResetPasswordEmail(email: string, resetLink: string) {
