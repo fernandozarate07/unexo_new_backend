@@ -1,13 +1,13 @@
+# Node dependencias
 node_modules
 # Keep environment variables out of version control
 .env
 .env.development
 .env.staging
 .env.production
-
+# Prisma
 /src/generated/prisma
-
-# Ignorar tests (opcional)
+# Ignorar tests
 *.test.ts
 tests/
 __tests__/
