@@ -1,16 +1,29 @@
 import { Request, Response } from "express";
 import { verifyUserService } from "../services/verifyUserService";
 
-export async function verifyUserController(req: Request, res: Response) {
-  const { id, token } = req.body;
-
+// DTO de entrada
+interface VerifyUserDTO {
+  id: number;
+  token: string;
+}
+// DTO de salida
+interface UserResponseDTO {
+  id: number;
+}
+export async function verifyUserController(req: Request<{}, {}, VerifyUserDTO>, res: Response) {
+  const data: VerifyUserDTO = req.body;
+  const { id, token } = data;
   try {
     const user = await verifyUserService({ id, token });
+
+    const userResponse = {
+      id: user.id,
+    } satisfies UserResponseDTO;
 
     return res.status(200).json({
       success: true,
       message: "Usuario verificado con éxito",
-      user: { id: user.id },
+      user: userResponse,
     });
   } catch (error: any) {
     if (error.code === "INVALID_TOKEN") {
