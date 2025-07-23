@@ -1,21 +1,42 @@
+// src/modules/auth/controllers/loginUserController.ts
 import loginUserService from "../services/loginUserService";
 import { Request, Response } from "express";
 
-export default async function loginUserController(req: Request, res: Response) {
+//DTO de entrada
+interface LoginUserRequest {
+  email: string;
+  password: string;
+}
+//DTO de salida
+interface LoginUserResponse {
+  success: boolean;
+  message: string;
+  user?: {
+    id: number;
+    name: string;
+    email: string;
+    profilePhoto?: string;
+    role: string;
+    points: number;
+  };
+}
+export default async function loginUserController(req: Request<{}, {}, LoginUserRequest>, res: Response) {
   try {
     const user = await loginUserService(req);
+
+    const userResponse = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      profilePhoto: user.profilePhoto,
+      role: user.role,
+      points: user.points,
+    } satisfies LoginUserResponse["user"];
 
     return res.status(200).json({
       success: true,
       message: "Se inició sesión correctamente",
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        profilePhoto: user.profilePhoto,
-        role: user.role,
-        points: user.points,
-      },
+      user: userResponse,
     });
   } catch (error: any) {
     console.error("Error en login:", error);

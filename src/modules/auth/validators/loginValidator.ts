@@ -1,3 +1,4 @@
+// src/modules/auth/validators/loginValidator.ts
 import { body, ValidationChain } from "express-validator";
 
 // Validaciones para el inicio de sesión de usuario
