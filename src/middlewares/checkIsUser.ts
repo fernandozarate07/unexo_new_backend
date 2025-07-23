@@ -1,3 +1,4 @@
+//src/middlewares/checkIsUser.ts
 import { Request, Response, NextFunction } from "express";
 import { getUserRoleById } from "../modules/auth/repositories/authRepository";
 import { User } from "../types/User";

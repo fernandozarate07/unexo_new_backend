@@ -33,7 +33,7 @@ router.post("/register/verify", verifyValidator, validateRequest, verifyUserCont
 router.post("/login", loginValidator, validateRequest, loginUserController);
 router.get("/logout", isAuthenticated, logoutUserController);
 router.put(
-  "password",
+  "/password",
   isAuthenticated,
   checkIsUser,
   updatePasswordValidator,

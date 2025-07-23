@@ -19,6 +19,13 @@ message: "Usuario no encontrado"
 
 ---
 
+code: "INVALID_CURRENT_PASSWORD"
+status: 404
+success: false
+message: "La contraseña actual es incorrecta"
+
+---
+
 code: "INVALID_CREDENTIALS"
 status: 401
 success: false

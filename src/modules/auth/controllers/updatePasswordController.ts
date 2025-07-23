@@ -1,9 +1,16 @@
+// src/modules/auth/controllers/updatePasswordController.ts
 import { Request, Response } from "express";
 import updatePasswordService from "../services/updatePasswordService";
 import { User } from "@/types/User";
-
-export default async function updatePasswordController(req: Request, res: Response) {
-  const { currentPassword, newPassword } = req.body;
+//DTO entrada
+interface UpdatePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+export default async function updatePasswordController(req: Request<{}, {}, UpdatePasswordRequest>, res: Response) {
+  const data = req.body;
+  const { currentPassword, newPassword } = data;
   const user = req.user as User | undefined;
 
   if (!user?.id) {
@@ -11,7 +18,8 @@ export default async function updatePasswordController(req: Request, res: Respon
   }
 
   try {
-    await updatePasswordService({ currentPassword, newPassword, userId: user.id });
+    const userId: number = user.id;
+    await updatePasswordService({ currentPassword, newPassword, userId });
 
     return res.status(200).json({
       success: true,
