@@ -1,3 +1,4 @@
+//src/middlewares/isAuthenticated.ts
 import { Request, Response, NextFunction } from "express";
 
 function isAuthenticated(req: Request, res: Response, next: NextFunction) {

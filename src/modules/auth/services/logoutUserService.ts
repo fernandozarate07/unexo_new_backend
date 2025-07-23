@@ -1,3 +1,4 @@
+//src/modules/auth/services/logoutUserService.ts
 import { Request } from "express";
 
 export default async function logoutUserService(req: Request): Promise<void> {

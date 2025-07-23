@@ -1,3 +1,4 @@
+//src/modules/auth/controllers/logoutUserController.ts
 import logoutUserService from "../services/logoutUserService";
 import { Request, Response } from "express";
 
