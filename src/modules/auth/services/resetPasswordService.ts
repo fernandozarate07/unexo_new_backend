@@ -1,3 +1,5 @@
+//src/modules/auth/services/resetPasswordService.ts
+
 import { findUserByResetToken, updateUserPassword } from "../repositories/authRepository";
 import bcrypt from "bcrypt";
 

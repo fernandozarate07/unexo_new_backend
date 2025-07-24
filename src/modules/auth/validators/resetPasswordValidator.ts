@@ -1,3 +1,5 @@
+//src/modules/auth/validators/resetPasswordValidator.ts
+
 import { body, ValidationChain } from "express-validator";
 
 const updatePasswordValidator: ValidationChain[] = [

@@ -37,3 +37,10 @@ code: "INTERNAL_SERVER_ERROR"
 status: 500
 success: false
 message: "Error interno del servidor"
+
+---
+
+code: "INVALID_NEW_PASSWORD"
+status: 400
+success: false
+message: "La nueva contraseña no puede ser igual a la anterior"

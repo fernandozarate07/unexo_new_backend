@@ -1,3 +1,5 @@
+//src/modules/auth/controllers/resetPasswordController.ts
+
 import { Request, Response } from "express";
 import resetPasswordService from "../services/resetPasswordService";
 
