@@ -40,7 +40,7 @@ router.put(
   validateRequest,
   updatePasswordController
 );
-router.post("/passwpord/forgot", forgotPasswordValidator, validateRequest, forgotPasswordController);
+router.post("/password/forgot", forgotPasswordValidator, validateRequest, forgotPasswordController);
 router.post("/password/reset", resetPasswordValidator, validateRequest, resetPasswordController);
 
 export default router;

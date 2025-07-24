@@ -1,3 +1,5 @@
+//src/modules/auth/validators/forgotPasswordValidator.ts
+
 import { body, ValidationChain } from "express-validator";
 
 // Validaciones para el inicio de sesión de usuario

@@ -12,9 +12,10 @@ export default async function forgotPasswordService(email: string): Promise<void
   // Generar un token de restablecimiento y una fecha de expiración
   const rawToken = crypto.randomBytes(32).toString("hex"); // Token para restablecimiento
   const expires = new Date(Date.now() + 60 * 60 * 1000); // 1 hora
+  const userId = user.id;
 
   //Actualizar el usuario con el token y la expiración
-  await addResetTokenToUser(user.id, rawToken, expires);
+  await addResetTokenToUser(userId, rawToken, expires);
 
   //Crear el enlace de restablecimiento
   const resetLink = `${process.env.FRONTEND_URL}/api/auth/password/reset?token=${rawToken}`;
